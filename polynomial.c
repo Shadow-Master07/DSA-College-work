@@ -83,18 +83,33 @@ void addPolynomials(s_polyData *head1, s_polyData *head2, s_polyData *finalHead)
     }
 }
 
+void showPolynomial(s_polyData *head)
+{
+    for (s_polyData *temp = head; temp != NULL; temp = temp->next)
+    {
+        printf("%f, %d, %p\n", temp->coefficient, temp->exponent, temp->next);
+    }
+}
+
 int main()
 {
     s_polyData *head1 = NULL;
     s_polyData *head2 = NULL;
 
+    printf("First polynomial entry\n");
     head1 = (s_polyData *)malloc(sizeof(s_polyData));
     addToLinkedList(head1);
+
+    printf("Second polynomial entry\n");
     head2 = (s_polyData *)malloc(sizeof(s_polyData));
     addToLinkedList(head2);
 
+    showPolynomial(head1);
+    showPolynomial(head2);
+
     s_polyData *final = (s_polyData *)malloc(sizeof(s_polyData));
     addPolynomials(head1, head2, final);
+    showPolynomial(final);
 
     return 0;
 }
