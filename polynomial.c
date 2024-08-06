@@ -90,7 +90,14 @@ void showPolynomial(s_polyData *head)
 {
     for (s_polyData *temp = head; temp != NULL; temp = temp->next)
     {
-        printf("%f, %d, %x\n", temp->coefficient, temp->exponent, temp->next);
+        if (temp->next == NULL)
+        {
+            printf("%f, %d, NULL\n", temp->coefficient, temp->exponent);
+        }
+        else
+        {
+            printf("%f, %d, %x\n", temp->coefficient, temp->exponent, temp->next);
+        }
     }
 }
 
