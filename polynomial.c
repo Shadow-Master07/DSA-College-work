@@ -36,22 +36,25 @@ void addPolynomials(s_polyData *head1, s_polyData *head2, s_polyData *finalHeadT
     s_polyData *temp1 = head1, *temp2 = head2, *finalHead = finalHeadTemp;
     while (1)
     {
-        if ((temp1->next != NULL) && (temp2->next == NULL))
+        if ((temp1 != NULL) && (temp2 == NULL))
         {
             finalHead->coefficient = temp1->coefficient;
             finalHead->exponent = temp1->exponent;
             finalHead->next = (s_polyData *)malloc(sizeof(s_polyData));
             temp1 = temp1->next;
         }
-        if ((temp1->next == NULL) && (temp2->next != NULL))
+        if ((temp1 == NULL) && (temp2 != NULL))
         {
             finalHead->coefficient = temp2->coefficient;
             finalHead->exponent = temp2->exponent;
             finalHead->next = (s_polyData *)malloc(sizeof(s_polyData));
             temp2 = temp2->next;
         }
-        if ((temp1->next == NULL) && (temp2->next == NULL))
+        if ((temp1 == NULL) && (temp2 == NULL))
         {
+            finalHead->next = NULL;
+            finalHead->coefficient = 0;
+            finalHead->exponent = 0;
             return;
         }
         if (temp1->exponent == temp2->exponent)
@@ -59,6 +62,7 @@ void addPolynomials(s_polyData *head1, s_polyData *head2, s_polyData *finalHeadT
             finalHead->coefficient = temp1->coefficient + temp2->coefficient;
             finalHead->exponent = temp1->exponent;
             finalHead->next = (s_polyData *)malloc(sizeof(s_polyData));
+            finalHead = finalHead->next;
             temp1 = temp1->next;
             temp2 = temp2->next;
             continue;
