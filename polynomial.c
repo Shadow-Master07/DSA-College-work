@@ -13,11 +13,10 @@ void addToLinkedList(s_polyData *head)
     s_polyData *temp = head;
     while (1)
     {
-        // malloc(sizeof(s_polyData));
         printf("Coefficient: ");
-        scanf("%f", temp->coefficient);
+        scanf("%f", &(temp->coefficient));
         printf("Exponent: ");
-        scanf("%d", temp->exponent);
+        scanf("%d", &(temp->exponent));
 
         if (temp->exponent > 0)
         {
@@ -32,9 +31,9 @@ void addToLinkedList(s_polyData *head)
     }
 }
 
-void addPolynomials(s_polyData *head1, s_polyData *head2, s_polyData *finalHead)
+void addPolynomials(s_polyData *head1, s_polyData *head2, s_polyData *finalHeadTemp)
 {
-    s_polyData *temp1 = head1, *temp2 = head2;
+    s_polyData *temp1 = head1, *temp2 = head2, *finalHead = finalHeadTemp;
     while (1)
     {
         if ((temp1->next != NULL) && (temp2->next == NULL))
@@ -87,7 +86,7 @@ void showPolynomial(s_polyData *head)
 {
     for (s_polyData *temp = head; temp != NULL; temp = temp->next)
     {
-        printf("%f, %d, %p\n", temp->coefficient, temp->exponent, temp->next);
+        printf("%f, %d, %x\n", temp->coefficient, temp->exponent, temp->next);
     }
 }
 
@@ -96,19 +95,24 @@ int main()
     s_polyData *head1 = NULL;
     s_polyData *head2 = NULL;
 
+    printf("----------------------\n");
     printf("First polynomial entry\n");
     head1 = (s_polyData *)malloc(sizeof(s_polyData));
     addToLinkedList(head1);
 
+    printf("----------------------\n");
     printf("Second polynomial entry\n");
     head2 = (s_polyData *)malloc(sizeof(s_polyData));
     addToLinkedList(head2);
 
+    printf("----------------------\n");
     showPolynomial(head1);
+    printf("----------------------\n");
     showPolynomial(head2);
 
     s_polyData *final = (s_polyData *)malloc(sizeof(s_polyData));
     addPolynomials(head1, head2, final);
+    printf("----------------------\n");
     showPolynomial(final);
 
     return 0;
